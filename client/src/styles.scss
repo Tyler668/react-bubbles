@@ -14,6 +14,7 @@ body,
   font-family: "Montserrat", sans-serif;
   text-align: center;
   display: flex;
+  justify-content: center; ////////////////////////////////////////////////////////////////////////////////////
 
   svg {
     height: 100%;
@@ -95,5 +96,12 @@ form {
     color: white;
     padding: 3px 8px;
     margin-top: 16px;
+  }
+}
+
+
+.login-div{
+  h1{
+    text-align: center;
   }
 }
