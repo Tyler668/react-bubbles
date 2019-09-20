@@ -7,10 +7,17 @@ const initialColor = {
   code: { hex: "" }
 };
 
+// const colorToAdd = {
+//   color: '',
+//   code: { hex: '' },
+//   id: ''
+// };
+
 const ColorList = ({ colors, match, updateColors }) => {
 
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  // const [colorToAdd, setColorToAdd] = useState(colorToAdd)
 
   const editColor = color => {
     setEditing(true);
@@ -40,6 +47,22 @@ const ColorList = ({ colors, match, updateColors }) => {
       .catch(err => { console.log(err) })
 
   };
+
+
+  // const addColor = color => {
+  //   axiosWithAuth()
+  //     .post(`/colors/${color.id}`, color)
+  //     .then(res => {
+  //       console.log(res)
+  //       window.location = '/protected'
+  //     })
+  //     .catch(err => { console.log(err) })
+  // }
+
+
+  // const handleChange = e => {
+  //   // addColor(colorToAdd)
+  // };
 
   return (
     <div className="colors-wrap">
@@ -91,7 +114,23 @@ const ColorList = ({ colors, match, updateColors }) => {
         </form>
       )}
       <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
+      {/* <div className='add-form-cont'>
+        <form id='myForm' onSubmit={addColor(colorToAdd)}>
+          <input
+            placeholder='Color Name'
+            type="name"
+            name="color"
+            onChange={handleChange}
+          />
+          <input
+            placeholder='Hex'
+            type="age"
+            name="hex"
+            onChange={handleChange}
+          />
+          <button>Submit</button>
+        </form>
+      </div> */}
     </div>
   );
 };
