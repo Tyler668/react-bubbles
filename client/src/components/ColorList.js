@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const initialColor = {
   color: "",
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors }) => {
-  console.log(colors);
+const ColorList = ({ colors, match, updateColors }) => {
+ 
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+
+  
+ 
+  // useEffect(() => {
+  //     const id = match.params.id;
+  //     const colorToEdit = colors.find(item => `${item.id}` === id);
+  //     if (colorToEdit) {
+  //         console.log('Updating Color:', colorToEdit);
+  //         setColorToEdit(colorToEdit);
+  //     }
+  // }, [match, colors]);
+
 
   const editColor = color => {
     setEditing(true);
@@ -18,9 +31,14 @@ const ColorList = ({ colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
+    console.log('Color to edit ID:', colorToEdit)
+    console.log('Url to edit:',`/colors/${colorToEdit.id}`)
+    axiosWithAuth()
+    .put(`colors/${colorToEdit.id}`, colorToEdit)
+    .then(res => {
+        window.location = '/protected'
+    })
+    .catch(err => { console.log(err) })
   };
 
   const deleteColor = color => {

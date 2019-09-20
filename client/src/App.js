@@ -13,9 +13,9 @@ function App() {
 
 
         <Switch>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/login" component={Login} />
           <Route exact path='/protected' component={BubblePage} />
-          {/* <Route path = '/createfriend' component = {}/> */}
+          {/* <Route path = '/create' component = {}/> */}
           <Route component={Login} />
         </Switch>
       </div>
