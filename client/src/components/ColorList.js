@@ -49,7 +49,7 @@ const ColorList = ({ colors, match, updateColors }) => {
           <li key={color.color} onClick={() => editColor(color)}>
             <span>
               <span className="delete" onClick={() => deleteColor(color)}>
-                x
+                X
               </span>{" "}
               {color.color}
             </span>
