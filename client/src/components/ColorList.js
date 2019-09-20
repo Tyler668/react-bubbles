@@ -8,21 +8,9 @@ const initialColor = {
 };
 
 const ColorList = ({ colors, match, updateColors }) => {
- 
+
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
-
-  
- 
-  // useEffect(() => {
-  //     const id = match.params.id;
-  //     const colorToEdit = colors.find(item => `${item.id}` === id);
-  //     if (colorToEdit) {
-  //         console.log('Updating Color:', colorToEdit);
-  //         setColorToEdit(colorToEdit);
-  //     }
-  // }, [match, colors]);
-
 
   const editColor = color => {
     setEditing(true);
@@ -31,18 +19,26 @@ const ColorList = ({ colors, match, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
-    console.log('Color to edit ID:', colorToEdit)
-    console.log('Url to edit:',`/colors/${colorToEdit.id}`)
+
     axiosWithAuth()
-    .put(`colors/${colorToEdit.id}`, colorToEdit)
-    .then(res => {
+      .put(`colors/${colorToEdit.id}`, colorToEdit)
+      .then(res => {
         window.location = '/protected'
-    })
-    .catch(err => { console.log(err) })
+      })
+      .catch(err => { console.log(err) })
   };
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    console.log('Color to Delete ID:', colorToEdit)
+    console.log('Url to edit:', `/colors/${color.id}`)
+    axiosWithAuth()
+      .delete(`colors/${color.id}`, color)
+      .then(res => {
+        window.location = '/protected'
+      })
+      .catch(err => { console.log(err) })
+
   };
 
   return (
